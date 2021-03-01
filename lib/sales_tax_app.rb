@@ -11,6 +11,7 @@ class SalesTaxApp
     @receipt = Receipt.new
     @sales_tax = 0
     @subtotal = 0
+    @tax = 0
   end
 
   def process_receipt
@@ -18,6 +19,7 @@ class SalesTaxApp
       line_item = line.to_h
       derive_sales_tax(line_item)
       derive_subtotal(line_item)
+      line['Price'] = sprintf("%.2f", (line['Price'].to_f + @tax))
       receipt.add_item(line)
     end
     receipt.print(@sales_tax, derive_total)
@@ -30,8 +32,8 @@ class SalesTaxApp
   end
 
   def derive_sales_tax(line_item)
-    tax = TaxCalculator.new(line_item).calculate_tax
-    @sales_tax += tax
+    @tax = TaxCalculator.new(line_item).calculate_tax
+    @sales_tax += @tax
   end
 
   def derive_subtotal(line_item)
