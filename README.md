@@ -3,7 +3,7 @@
 ## Getting Started
 
 - `bundle exec rspec` : Runs the test suite (not as extensive as it could be)
-- `bundle exec rake`  : Will run the application but puts statements are commented out.
+- `bundle exec rake`  : Will run the application but puts statements are commented out, mainly used for debugging.
 
 ## To Dos:
 - Add functionality to intake quantities
